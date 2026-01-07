@@ -1,0 +1,11 @@
+version: 1
+# Calendar IDs are provider-specific (Google, CalDAV, etc).
+# We keep them as opaque strings to avoid vendor coupling.
+
+calendars:
+  - group_id: grp.governance.delex-core
+    calendar_id: delex-core@EXAMPLE.INVALID
+  - group_id: grp.governance.pmo
+    calendar_id: pmo@EXAMPLE.INVALID
+  - group_id: grp.broadcast.all
+    calendar_id: broadcast@EXAMPLE.INVALID

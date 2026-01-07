@@ -1,0 +1,22 @@
+version: 1
+# Meeting definitions are intentionally tool-agnostic.
+# Automation can render these into Google Calendar, CalDAV, or ICS exports later.
+
+meetings:
+  - id: mtg.delex.pmo-scrum.weekly
+    name: DelEx + PMO Scrum
+    cadence: weekly
+    duration_minutes: 60
+    participants_group_ids: [grp.governance.delex-core, grp.governance.pmo]
+
+  - id: mtg.delex.deep-dive.biweekly
+    name: DelEx Team Deep Dive
+    cadence: biweekly
+    duration_minutes: 60
+    participants_group_ids: [grp.governance.delex-core, grp.governance.arch-council]
+
+  - id: mtg.geo.interlock.monthly
+    name: GEO Interlock
+    cadence: monthly
+    duration_minutes: 45
+    participants_group_ids: [grp.geo.na, grp.geo.emea, grp.geo.ap, grp.governance.delex-core, grp.governance.pmo]

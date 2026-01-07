@@ -1,0 +1,49 @@
+version: 1
+namespace: socioprophet.delex
+
+groups:
+  - id: grp.governance.delex-core
+    name: DelEx Core Team
+    purpose: Owns DelEx-OS, scope enforcement, OKRs/KPIs, decision integrity.
+  - id: grp.governance.pmo
+    name: PMO
+    purpose: Portfolio governance, prioritization, reporting, stakeholder interlocks.
+  - id: grp.governance.arch-council
+    name: Architecture Council
+    purpose: ADR approvals for architecture-impacting change.
+  - id: grp.governance.security-review
+    name: Security Review Board
+    purpose: Security sign-off for control gates and high-risk changes.
+
+  - id: grp.platform.core
+    name: Core Platform
+    purpose: Core runtime and shared platform primitives.
+  - id: grp.platform.data
+    name: Data Platform
+    purpose: Storage, pipelines, governance, lineage.
+  - id: grp.platform.ai
+    name: AI/ML Platform
+    purpose: Model lifecycle, evaluation, deployment patterns.
+  - id: grp.platform.sre
+    name: SRE / Reliability
+    purpose: SLOs, incident response, resilience engineering.
+
+  - id: grp.geo.na
+    name: North America
+    purpose: GEO routing for interlocks and stakeholder reviews.
+  - id: grp.geo.emea
+    name: EMEA
+    purpose: GEO routing for interlocks and stakeholder reviews.
+  - id: grp.geo.ap
+    name: APAC
+    purpose: GEO routing for interlocks and stakeholder reviews.
+
+  - id: grp.enablement.tech
+    name: Technical Enablement Audience
+    purpose: Practitioners; patterns, success stories, implementation guidance.
+  - id: grp.enablement.sales
+    name: Sales Enablement Audience
+    purpose: Sellers; outcomes, proof points, objection handling.
+  - id: grp.broadcast.all
+    name: Platform + Ecosystem Broadcast
+    purpose: Broadcast for weekly plan, KPI snapshot, release notes.

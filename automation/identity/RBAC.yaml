@@ -1,0 +1,32 @@
+version: 1
+
+roles:
+  owner:
+    purpose: Accountable for execution outcomes.
+  approver:
+    purpose: Final authority for decisions and changes.
+  reviewer:
+    purpose: Completeness and quality control.
+  escalation_target:
+    purpose: Unblock stalled work.
+  publisher:
+    purpose: Publish official artifacts and state snapshots.
+  gatekeeper:
+    purpose: Enforce merge and policy gates.
+  custodian:
+    purpose: Operate automation infrastructure.
+  auditor:
+    purpose: Evidence integrity and compliance verification.
+
+bindings:
+  - group_id: grp.governance.delex-core
+    roles: [approver, gatekeeper, publisher, escalation_target]
+  - group_id: grp.governance.pmo
+    roles: [approver, publisher, escalation_target]
+  - group_id: grp.governance.arch-council
+    roles: [approver]
+  - group_id: grp.governance.security-review
+    roles: [approver, auditor, gatekeeper]
+
+  - group_id: grp.platform.sre
+    roles: [custodian, escalation_target]

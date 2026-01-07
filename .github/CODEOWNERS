@@ -1,0 +1,3 @@
+# CODEOWNERS intentionally starts permissive.
+# We will tighten this AFTER we create GitHub Teams matching group IDs.
+# (If we reference non-existent teams here, GitHub can treat the file as invalid.)

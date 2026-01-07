@@ -1,0 +1,15 @@
+version: 1
+# IMPORTANT: populate with real addresses in your domain.
+# Policy: every group that receives automation MUST have a routable address.
+
+lists:
+  - group_id: grp.governance.delex-core
+    address: delex-core@EXAMPLE.INVALID
+  - group_id: grp.governance.pmo
+    address: pmo@EXAMPLE.INVALID
+  - group_id: grp.governance.arch-council
+    address: arch-council@EXAMPLE.INVALID
+  - group_id: grp.governance.security-review
+    address: security-review@EXAMPLE.INVALID
+  - group_id: grp.broadcast.all
+    address: platform-broadcast@EXAMPLE.INVALID
