@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/gate-review.schema.json",
+  "title": "GateReview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "review_id",
+    "gate_id",
+    "engagement_id",
+    "current_action_classes",
+    "proposed_change",
+    "maturity_scores",
+    "decision"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "review_id": { "type": "string" },
+    "gate_id": { "type": "string" },
+    "engagement_id": { "type": "string" },
+    "current_action_classes": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["A0", "A1", "A2", "A3", "A4"] }
+    },
+    "proposed_change": { "type": "string" },
+    "maturity_scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requirements", "dependencies", "knowledge", "evaluation", "governance"],
+      "properties": {
+        "requirements": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "dependencies": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "knowledge": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "evaluation": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "governance": { "type": "integer", "minimum": 0, "maximum": 4 }
+      }
+    },
+    "decision": { "type": "string", "enum": ["approved", "approved_with_constraints", "not_approved"] },
+    "follow_up_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
