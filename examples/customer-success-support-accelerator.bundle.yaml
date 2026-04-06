@@ -1,0 +1,251 @@
+service_offer:
+  version: "1"
+  offer_id: offer.customer-success.support-accelerator
+  name: Governed AI Customer Success and Support Accelerator
+  buyer_problem: Slow case handling, fragmented knowledge, inconsistent escalation, and weak operator leverage.
+  stages:
+    - readiness_and_design
+    - build_and_shadow
+    - controlled_action_pilot
+    - managed_assurance
+  excluded_actions:
+    - pricing_changes
+    - customer_compensation
+    - policy_exceptions
+    - destructive_production_changes
+  acceptance_model:
+    - phase_gate_acceptance
+    - evidence_backed_change_control
+  managed_service_follow_on: true
+  target_kpis:
+    - time_to_first_meaningful_response
+    - routing_accuracy
+    - intervention_rate
+    - csat
+
+control_loop:
+  version: "1"
+  control_loop_id: cl.customer-success.support-intake
+  trigger: inbound_case_or_support_request
+  context_sources:
+    - crm
+    - ticketing
+    - knowledge_base
+    - internal_notes
+  allowed_tools:
+    - retrieve_account_context
+    - retrieve_kb_articles
+    - draft_response
+    - route_ticket
+  action_classes:
+    - A0
+    - A1
+    - A2
+    - A3
+    - A4
+  approval_rule: Consequential or customer-binding actions require human approval; selected reversible internal actions may run under policy.
+  exception_route: policy_owner_or_support_ops_queue
+  emitted_evidence:
+    - source_links
+    - policy_check
+    - approval_record
+    - output_log
+  target_kpis:
+    - time_to_first_meaningful_response
+    - time_to_resolution
+    - routing_accuracy
+
+autonomy_envelope:
+  version: "1"
+  workflow_id: wf.customer-success.support-accelerator
+  owners:
+    business_owner: role.client.sponsor
+    policy_owner: role.client.policy-owner
+    operator_owner: role.client.support-ops
+  actions:
+    - id: action.call-summary
+      description: Summarize inbound call or case notes.
+      class: A0
+      mode: observe
+      reversible: true
+      requires_human_approval: false
+      evidence_required: [source_links, output_log]
+    - id: action.reply-draft
+      description: Draft customer-facing reply for operator review.
+      class: A1
+      mode: draft
+      reversible: true
+      requires_human_approval: true
+      evidence_required: [source_links, draft_artifact]
+    - id: action.ticket-route
+      description: Route ticket to the correct internal queue.
+      class: A2
+      mode: approval_gated
+      reversible: true
+      requires_human_approval: true
+      rollback_required: true
+      evidence_required: [approval_record, routing_log]
+    - id: action.internal-reminder
+      description: Send internal reminder or follow-up nudge.
+      class: A3
+      mode: policy_bounded_auto
+      reversible: true
+      requires_human_approval: false
+      rollback_required: true
+      evidence_required: [policy_check, audit_log]
+    - id: action.customer-compensation
+      description: Offer credit, compensation, or externally binding concession.
+      class: A4
+      mode: human_only
+      reversible: false
+      requires_human_approval: true
+      evidence_required: [approval_record, final_audit]
+
+delivery_gates:
+  - version: "1"
+    gate_id: gate.readiness-baseline
+    name: Readiness Baseline
+    required_maturity:
+      requirements: 2
+      dependencies: 2
+      knowledge: 2
+      evaluation: 1
+      governance: 1
+    required_evidence:
+      - process_map
+      - dependency_register
+      - action_class_matrix
+      - baseline_kpi_pack
+    accountable_roles:
+      - role.client.sponsor
+      - role.consulting.delivery-lead
+    exit_criteria:
+      - named owners confirmed
+      - workflow boundary approved
+  - version: "1"
+    gate_id: gate.controlled-action-pilot
+    name: Controlled Action Pilot
+    required_maturity:
+      requirements: 3
+      dependencies: 3
+      knowledge: 3
+      evaluation: 3
+      governance: 3
+    required_evidence:
+      - shadow_mode_report
+      - rollback_test
+      - intervention_dashboard
+      - policy_signoff
+    accountable_roles:
+      - role.client.policy-owner
+      - role.consulting.evaluation-lead
+    exit_criteria:
+      - approved A2/A3 subset
+      - exception queue staffed
+
+client_dependencies:
+  - version: "1"
+    dependency_id: dep.crm-access
+    system: CRM
+    owner: role.client.system-owner
+    access_state: ready
+    criticality: critical
+    blockers: []
+    failure_modes: [missing_account_context, stale_data]
+  - version: "1"
+    dependency_id: dep.kb-corpus
+    system: Knowledge Base
+    owner: role.client.knowledge-owner
+    access_state: provisioning
+    criticality: high
+    blockers: [metadata_cleanup]
+    failure_modes: [stale_articles, low_citation_coverage]
+
+exception_classes:
+  - version: "1"
+    exception_id: exc.policy-ambiguity
+    severity: high
+    trigger_condition: conflicting_policy_or_missing_approval_path
+    human_owner: role.client.policy-owner
+    resolution_target_hours: 4
+    stop_work: true
+    rollback_considered: true
+  - version: "1"
+    exception_id: exc.missing-context
+    severity: medium
+    trigger_condition: account_or_case_context_is_incomplete
+    human_owner: role.client.support-ops
+    resolution_target_hours: 8
+    stop_work: false
+    rollback_considered: false
+
+board_items:
+  - version: "1"
+    item_id: board.readiness-baseline
+    item_type: gate_review
+    linked_engagement: eng.customer-success.support-001
+    linked_control_loop: cl.customer-success.support-intake
+    current_gate: gate.readiness-baseline
+    owner: role.consulting.delivery-lead
+    priority: P1
+    blocked: false
+    evidence_links: [process_map, dependency_register]
+  - version: "1"
+    item_id: board.kb-cleanup
+    item_type: dependency
+    linked_engagement: eng.customer-success.support-001
+    linked_control_loop: cl.customer-success.support-intake
+    current_gate: gate.readiness-baseline
+    owner: role.client.knowledge-owner
+    priority: P1
+    blocked: true
+    evidence_links: [metadata_cleanup]
+
+reusable_assets:
+  - version: "1"
+    asset_id: asset.cs-support-autonomy-envelope-template
+    asset_type: template
+    owning_group: grp.governance.delex-core
+    source_engagements:
+      - eng.customer-success.support-001
+    evidence_of_reuse_value:
+      - faster_contracting
+      - consistent_control_boundaries
+    readiness_status: review
+
+customer_success_review:
+  version: "1"
+  review_id: csr.q2.customer-success.support-001
+  review_period: 2026-Q2
+  kpi_movement:
+    - time_to_first_meaningful_response_down_18_percent
+    - routing_accuracy_up_12_percent
+  intervention_summary: Intervention remains concentrated in A1 drafting and policy ambiguity exceptions.
+  trust_signal: Operators accept summaries and routing suggestions but still want strict review of customer-facing drafts.
+  proposed_scope_changes:
+    - expand_read_only_account_health_summaries
+  proposed_autonomy_changes:
+    - consider_narrower_A3_internal_reminders
+
+gate_review:
+  version: "1"
+  review_id: gr.controlled-action-pilot.customer-success.support-001
+  gate_id: gate.controlled-action-pilot
+  engagement_id: eng.customer-success.support-001
+  current_action_classes:
+    - A0
+    - A1
+    - A2
+    - A3
+    - A4
+  proposed_change: allow_policy_bounded_internal_reminders_after_shadow_validation
+  maturity_scores:
+    requirements: 3
+    dependencies: 3
+    knowledge: 3
+    evaluation: 3
+    governance: 3
+  decision: approved_with_constraints
+  follow_up_actions:
+    - prove_reminder_rollback
+    - maintain_100_percent_review_for_customer_facing_drafts
