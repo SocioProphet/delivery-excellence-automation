@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/client-dependency.schema.json",
+  "title": "ClientDependency",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "dependency_id",
+    "system",
+    "owner",
+    "access_state",
+    "criticality"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "dependency_id": { "type": "string" },
+    "system": { "type": "string" },
+    "owner": { "type": "string" },
+    "access_state": {
+      "type": "string",
+      "enum": ["not_requested", "requested", "provisioning", "ready", "blocked"]
+    },
+    "criticality": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "failure_modes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "notes": { "type": "string" }
+  }
+}
