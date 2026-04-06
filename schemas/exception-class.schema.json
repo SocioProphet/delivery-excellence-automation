@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/exception-class.schema.json",
+  "title": "ExceptionClass",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "exception_id",
+    "severity",
+    "trigger_condition",
+    "human_owner",
+    "resolution_target_hours"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "exception_id": { "type": "string" },
+    "severity": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "trigger_condition": { "type": "string" },
+    "human_owner": { "type": "string" },
+    "resolution_target_hours": { "type": "number", "minimum": 0 },
+    "stop_work": { "type": "boolean", "default": false },
+    "rollback_considered": { "type": "boolean", "default": false },
+    "notes": { "type": "string" }
+  }
+}
