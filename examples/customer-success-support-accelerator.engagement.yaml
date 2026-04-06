@@ -1,0 +1,19 @@
+version: "1"
+engagement_id: eng.customer-success.support-001
+service_offer_id: offer.customer-success.support-accelerator
+sponsor: role.client.sponsor
+process_owner: role.client.support-process-owner
+system_owner: role.client.system-owner
+data_owner: role.client.knowledge-owner
+policy_owner: role.client.policy-owner
+operator_owner: role.client.support-ops
+target_workflow: wf.customer-success.support-accelerator
+current_gate: gate.readiness-baseline
+current_autonomy_classes:
+  - A0
+  - A1
+kpi_baseline:
+  - time_to_first_meaningful_response
+  - routing_accuracy
+  - intervention_rate
+notes: Initial bounded engagement before controlled-action pilot.
