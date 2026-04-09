@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/escrow-reference.schema.json",
+  "title": "EscrowReference",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "escrow_reference_id",
+    "instrument_type",
+    "currency",
+    "amount",
+    "status"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "escrow_reference_id": { "type": "string" },
+    "instrument_type": {
+      "type": "string",
+      "enum": ["fiat", "stablecoin", "token", "internal_ledger", "external_escrow"]
+    },
+    "currency": { "type": "string" },
+    "amount": { "type": "number", "minimum": 0 },
+    "external_reference": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["reserved", "released", "cancelled", "settled"]
+    },
+    "notes": { "type": "string" }
+  }
+}
