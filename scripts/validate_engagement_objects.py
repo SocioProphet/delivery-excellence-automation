@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 import yaml
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "schemas" / "engagement.schema.json"
@@ -22,7 +22,7 @@ def load_json(path: Path):
 
 
 def main() -> int:
-    validator = Draft202012Validator(load_json(SCHEMA))
+    validator = Draft202012Validator(load_json(SCHEMA), format_checker=FormatChecker())
     paths = sorted(EXAMPLE_DIR.glob("*.engagement.yaml"))
     if not paths:
         print("[FAIL] no *.engagement.yaml examples found", file=sys.stderr)
@@ -30,10 +30,10 @@ def main() -> int:
 
     failures: list[str] = []
     for path in paths:
-      obj = load_yaml(path)
-      for err in sorted(validator.iter_errors(obj), key=lambda e: list(e.path)):
-          field_path = "/".join(str(p) for p in err.path)
-          failures.append(f"{path.name}: {field_path or '<root>'}: {err.message}")
+        obj = load_yaml(path)
+        for err in sorted(validator.iter_errors(obj), key=lambda e: list(e.path)):
+            field_path = "/".join(str(p) for p in err.path)
+            failures.append(f"{path.name}: {field_path or '<root>'}: {err.message}")
 
     if failures:
         for failure in failures:

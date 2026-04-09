@@ -70,6 +70,7 @@
           {
             "if": { "properties": { "class": { "const": "A3" } } },
             "then": {
+              "required": ["rollback_required"],
               "properties": {
                 "reversible": { "const": true },
                 "rollback_required": { "const": true }

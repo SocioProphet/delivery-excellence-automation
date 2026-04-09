@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 import yaml
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_DIR = ROOT / "schemas"
@@ -44,7 +44,7 @@ def validate_one(validator: Draft202012Validator, obj: object, label: str) -> li
 
 def main() -> int:
     validators = {
-        name: Draft202012Validator(load_json(SCHEMA_DIR / schema_file))
+        name: Draft202012Validator(load_json(SCHEMA_DIR / schema_file), format_checker=FormatChecker())
         for name, schema_file in BUNDLE_SPEC.items()
     }
 
@@ -57,45 +57,46 @@ def main() -> int:
 
     for bundle_path in bundle_paths:
         bundle = load_yaml(bundle_path)
+        bundle_failures: list[str] = []
         for section_name, schema_file in BUNDLE_SPEC.items():
             if section_name not in bundle:
-                failures.append(f"{bundle_path.name}: missing section '{section_name}'")
+                bundle_failures.append(f"{bundle_path.name}: missing section '{section_name}'")
                 continue
             payload = bundle[section_name]
             validator = validators[section_name]
             if isinstance(payload, list):
                 for idx, item in enumerate(payload):
-                    failures.extend(validate_one(validator, item, f"{bundle_path.name}:{section_name}[{idx}]"))
+                    bundle_failures.extend(validate_one(validator, item, f"{bundle_path.name}:{section_name}[{idx}]"))
             else:
-                failures.extend(validate_one(validator, payload, f"{bundle_path.name}:{section_name}"))
+                bundle_failures.extend(validate_one(validator, payload, f"{bundle_path.name}:{section_name}"))
 
-        if failures:
-            continue
+        if not bundle_failures:
+            gate_ids = {g["gate_id"] for g in bundle["delivery_gates"]}
+            known_action_classes = {a["class"] for a in bundle["autonomy_envelope"]["actions"]}
+            control_loop_id = bundle["control_loop"]["control_loop_id"]
 
-        gate_ids = {g["gate_id"] for g in bundle["delivery_gates"]}
-        known_action_classes = {a["class"] for a in bundle["autonomy_envelope"]["actions"]}
-        control_loop_id = bundle["control_loop"]["control_loop_id"]
-
-        if bundle["gate_review"]["gate_id"] not in gate_ids:
-            failures.append(
-                f"{bundle_path.name}: gate_review.gate_id '{bundle['gate_review']['gate_id']}' not found in delivery_gates"
-            )
-
-        for item in bundle["board_items"]:
-            if item["current_gate"] not in gate_ids:
-                failures.append(
-                    f"{bundle_path.name}: board item '{item['item_id']}' references unknown gate '{item['current_gate']}'"
-                )
-            if item["linked_control_loop"] != control_loop_id:
-                failures.append(
-                    f"{bundle_path.name}: board item '{item['item_id']}' linked_control_loop must match bundle control loop"
+            if bundle["gate_review"]["gate_id"] not in gate_ids:
+                bundle_failures.append(
+                    f"{bundle_path.name}: gate_review.gate_id '{bundle['gate_review']['gate_id']}' not found in delivery_gates"
                 )
 
-        for action_class in bundle["gate_review"]["current_action_classes"]:
-            if action_class not in known_action_classes:
-                failures.append(
-                    f"{bundle_path.name}: gate review references unknown action class '{action_class}'"
-                )
+            for item in bundle["board_items"]:
+                if item["current_gate"] not in gate_ids:
+                    bundle_failures.append(
+                        f"{bundle_path.name}: board item '{item['item_id']}' references unknown gate '{item['current_gate']}'"
+                    )
+                if item["linked_control_loop"] != control_loop_id:
+                    bundle_failures.append(
+                        f"{bundle_path.name}: board item '{item['item_id']}' linked_control_loop must match bundle control loop"
+                    )
+
+            for action_class in bundle["gate_review"]["current_action_classes"]:
+                if action_class not in known_action_classes:
+                    bundle_failures.append(
+                        f"{bundle_path.name}: gate review references unknown action class '{action_class}'"
+                    )
+
+        failures.extend(bundle_failures)
 
     if failures:
         for failure in failures:

@@ -13,7 +13,7 @@ This repository holds machine-readable contracts and validation surfaces for Del
 - `schemas/autonomy-envelope.schema.json`
 - `schemas/delivery-gate.schema.json`
 - `schemas/client-dependency.schema.json`
-- `examples/customer-success-support-accelerator.yaml`
+- `examples/customer-success-support-accelerator.bundle.yaml`
 - `docs/validation-contract.md`
 
 ## Design rule
