@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/bounty-program-policy.schema.json",
+  "title": "BountyProgramPolicy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "policy_id",
+    "name",
+    "service_offer_id",
+    "allowed_reward_signals",
+    "prohibited_reward_signals",
+    "gate_requirements",
+    "required_approver_role",
+    "requires_evidence_validation",
+    "requires_gate_approval"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "policy_id": { "type": "string" },
+    "name": { "type": "string" },
+    "service_offer_id": { "type": "string" },
+    "engagement_id": { "type": "string" },
+    "allowed_reward_signals": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "prohibited_reward_signals": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "gate_requirements": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "required_approver_role": { "type": "string" },
+    "payout_ceiling_amount": { "type": "number", "minimum": 0 },
+    "currency": { "type": "string" },
+    "requires_evidence_validation": { "type": "boolean" },
+    "requires_gate_approval": { "type": "boolean" },
+    "notes": { "type": "string" }
+  }
+}
