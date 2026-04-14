@@ -13,3 +13,11 @@ lists:
     address: security-review@EXAMPLE.INVALID
   - group_id: grp.broadcast.all
     address: platform-broadcast@EXAMPLE.INVALID
+  - group_id: grp.platform.sre
+    address: sre@EXAMPLE.INVALID
+  - group_id: grp.geo.na
+    address: geo-na@EXAMPLE.INVALID
+  - group_id: grp.geo.emea
+    address: geo-emea@EXAMPLE.INVALID
+  - group_id: grp.geo.ap
+    address: geo-ap@EXAMPLE.INVALID

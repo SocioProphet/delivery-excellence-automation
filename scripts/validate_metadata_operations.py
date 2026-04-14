@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 import yaml
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_DIR = ROOT / "schemas"
@@ -32,7 +32,7 @@ def load_json(path: Path):
 
 def main() -> int:
     validators = {
-        section: Draft202012Validator(load_json(SCHEMA_DIR / schema_name))
+        section: Draft202012Validator(load_json(SCHEMA_DIR / schema_name), format_checker=FormatChecker())
         for section, schema_name in SECTION_TO_SCHEMA.items()
     }
 
