@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/metadata-completeness-evaluation.schema.json",
+  "title": "MetadataCompletenessEvaluation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "artifact_id",
+    "status",
+    "tmd_present",
+    "bmd_present",
+    "evaluation_timestamp"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "status": { "type": "string", "enum": ["red", "yellow", "green"] },
+    "tmd_present": { "type": "boolean" },
+    "bmd_present": { "type": "boolean" },
+    "column_count": { "type": "integer", "minimum": 0 },
+    "technical_metadata_coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+    "business_metadata_coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+    "evaluation_timestamp": { "type": "string", "format": "date-time" },
+    "notes": { "type": "string" }
+  }
+}
