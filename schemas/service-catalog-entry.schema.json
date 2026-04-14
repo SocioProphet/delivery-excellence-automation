@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/service-catalog-entry.schema.json",
+  "title": "ServiceCatalogEntry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "service_id",
+    "service_name",
+    "function_area",
+    "service_area",
+    "owners",
+    "success_kpis"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "service_id": { "type": "string" },
+    "service_name": { "type": "string" },
+    "function_area": { "type": "string" },
+    "service_area": { "type": "string" },
+    "owners": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "success_kpis": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "linked_delivery_gates": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "linked_reusable_assets": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "notes": { "type": "string" }
+  }
+}
