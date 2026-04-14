@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/kmass-metric.schema.json",
+  "title": "KMASSMetric",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "metric_id",
+    "metric_type",
+    "unit",
+    "phase_targets",
+    "measurement_protocol",
+    "acceptable_error_margin",
+    "evidence_artifact"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "metric_id": { "type": "string" },
+    "figure_row": { "type": "string" },
+    "metric_type": { "type": "string", "enum": ["outcome", "capacity", "friction", "composite"] },
+    "unit": { "type": "string" },
+    "phase_targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "measurement_protocol": { "type": "string" },
+    "acceptable_error_margin": { "type": "string" },
+    "evidence_artifact": { "type": "string" }
+  }
+}
