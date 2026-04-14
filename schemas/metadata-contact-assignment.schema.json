@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/metadata-contact-assignment.schema.json",
+  "title": "MetadataContactAssignment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "artifact_id",
+    "contact_name",
+    "contact_role",
+    "email",
+    "engagement_status"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "contact_name": { "type": "string" },
+    "contact_role": { "type": "string" },
+    "email": { "type": "string", "format": "email" },
+    "engagement_status": { "type": "string", "enum": ["red", "yellow", "green"] },
+    "last_verified": { "type": "string", "format": "date-time" },
+    "metadata_focal": { "type": "string" },
+    "intro_session_attended": { "type": "boolean" }
+  }
+}

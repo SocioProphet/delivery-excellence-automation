@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/metadata-escalation-event.schema.json",
+  "title": "MetadataEscalationEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "escalation_id",
+    "artifact_id",
+    "trigger_reason",
+    "owner_role",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "escalation_id": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "trigger_reason": { "type": "string" },
+    "owner_role": { "type": "string" },
+    "status": { "type": "string", "enum": ["open", "acknowledged", "resolved", "dismissed"] },
+    "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "resolved_at": { "type": "string", "format": "date-time" },
+    "notes": { "type": "string" }
+  }
+}

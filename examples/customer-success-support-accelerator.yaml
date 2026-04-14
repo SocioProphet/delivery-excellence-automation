@@ -1,0 +1,112 @@
+version: "1"
+workflow_id: wf.customer-success.support-accelerator
+owners:
+  business_owner: role.client.sponsor
+  policy_owner: role.client.policy-owner
+  operator_owner: role.client.support-ops
+
+autonomy_envelope:
+  version: "1"
+  workflow_id: wf.customer-success.support-accelerator
+  owners:
+    business_owner: role.client.sponsor
+    policy_owner: role.client.policy-owner
+    operator_owner: role.client.support-ops
+  actions:
+    - id: action.call-summary
+      description: Summarize inbound call or case notes.
+      class: A0
+      mode: observe
+      reversible: true
+      requires_human_approval: false
+      evidence_required: [source_links, output_log]
+    - id: action.reply-draft
+      description: Draft customer-facing reply for operator review.
+      class: A1
+      mode: draft
+      reversible: true
+      requires_human_approval: true
+      evidence_required: [source_links, draft_artifact]
+    - id: action.ticket-route
+      description: Route ticket to the correct internal queue.
+      class: A2
+      mode: approval_gated
+      reversible: true
+      requires_human_approval: true
+      rollback_required: true
+      evidence_required: [approval_record, routing_log]
+    - id: action.internal-reminder
+      description: Send internal reminder or follow-up nudge.
+      class: A3
+      mode: policy_bounded_auto
+      reversible: true
+      requires_human_approval: false
+      rollback_required: true
+      evidence_required: [policy_check, audit_log]
+    - id: action.customer-compensation
+      description: Offer credit, compensation, or externally binding concession.
+      class: A4
+      mode: human_only
+      reversible: false
+      requires_human_approval: true
+      evidence_required: [approval_record, final_audit]
+
+delivery_gates:
+  - version: "1"
+    gate_id: gate.readiness-baseline
+    name: Readiness Baseline
+    required_maturity:
+      requirements: 2
+      dependencies: 2
+      knowledge: 2
+      evaluation: 1
+      governance: 1
+    required_evidence:
+      - process_map
+      - dependency_register
+      - action_class_matrix
+      - baseline_kpi_pack
+    accountable_roles:
+      - role.client.sponsor
+      - role.consulting.delivery-lead
+    exit_criteria:
+      - named owners confirmed
+      - workflow boundary approved
+  - version: "1"
+    gate_id: gate.controlled-action-pilot
+    name: Controlled Action Pilot
+    required_maturity:
+      requirements: 3
+      dependencies: 3
+      knowledge: 3
+      evaluation: 3
+      governance: 3
+    required_evidence:
+      - shadow_mode_report
+      - rollback_test
+      - intervention_dashboard
+      - policy_signoff
+    accountable_roles:
+      - role.client.policy-owner
+      - role.consulting.evaluation-lead
+    exit_criteria:
+      - approved A2/A3 subset
+      - exception queue staffed
+
+client_dependencies:
+  - version: "1"
+    dependency_id: dep.crm-access
+    system: CRM
+    owner: role.client.system-owner
+    access_state: ready
+    criticality: critical
+    blockers: []
+    failure_modes: [missing_account_context, stale_data]
+  - version: "1"
+    dependency_id: dep.kb-corpus
+    system: Knowledge Base
+    owner: role.client.knowledge-owner
+    access_state: provisioning
+    criticality: high
+    blockers: [metadata_cleanup]
+    failure_modes: [stale_articles, low_citation_coverage]

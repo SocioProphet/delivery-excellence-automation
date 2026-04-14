@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/board-item.schema.json",
+  "title": "BoardItem",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "item_id",
+    "item_type",
+    "linked_engagement",
+    "linked_control_loop",
+    "current_gate",
+    "owner",
+    "priority"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "item_id": { "type": "string" },
+    "item_type": {
+      "type": "string",
+      "enum": ["engagement", "dependency", "exception", "gate_review", "reusable_asset", "risk", "delivery_work"]
+    },
+    "linked_engagement": { "type": "string" },
+    "linked_control_loop": { "type": "string" },
+    "current_gate": { "type": "string" },
+    "owner": { "type": "string" },
+    "priority": {
+      "type": "string",
+      "enum": ["P0", "P1", "P2", "P3"]
+    },
+    "blocked": { "type": "boolean", "default": false },
+    "evidence_links": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

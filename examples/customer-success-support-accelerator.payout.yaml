@@ -1,0 +1,28 @@
+payout_decision:
+  version: "1"
+  payout_decision_id: pay.customer-success.support-001.readiness-baseline
+  engagement_id: eng.customer-success.support-001
+  gate_id: gate.readiness-baseline
+  status: approved
+  decision_owner: role.consulting.delivery-lead
+  evidence_links:
+    - process_map
+    - dependency_register
+    - metadata_cleanup
+  reusable_asset_ids:
+    - asset.cs-support-autonomy-envelope-template
+  exception_ids: []
+  escrow_reference_id: escrow.customer-success.support-001.readiness-baseline
+  amount: 2500
+  currency: USD
+  rationale: Approved for validated readiness-baseline dependency closure and reusable artifact support.
+
+escrow_reference:
+  version: "1"
+  escrow_reference_id: escrow.customer-success.support-001.readiness-baseline
+  instrument_type: internal_ledger
+  currency: USD
+  amount: 2500
+  external_reference: payout-ledger-placeholder
+  status: reserved
+  notes: No secrets, wallet keys, or private settlement material should be committed to git.

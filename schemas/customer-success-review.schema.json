@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/customer-success-review.schema.json",
+  "title": "CustomerSuccessReview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "review_id",
+    "review_period",
+    "kpi_movement",
+    "intervention_summary",
+    "trust_signal"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "review_id": { "type": "string" },
+    "review_period": { "type": "string" },
+    "kpi_movement": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "intervention_summary": { "type": "string" },
+    "trust_signal": { "type": "string" },
+    "proposed_scope_changes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "proposed_autonomy_changes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

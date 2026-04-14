@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/metadata-sla-policy.schema.json",
+  "title": "MetadataSLAPolicy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "policy_id",
+    "severity",
+    "response_sla",
+    "remediation_sla",
+    "required_closure_evidence"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "policy_id": { "type": "string" },
+    "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+    "response_sla": { "type": "string" },
+    "remediation_sla": { "type": "string" },
+    "required_closure_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "escalation_trigger": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

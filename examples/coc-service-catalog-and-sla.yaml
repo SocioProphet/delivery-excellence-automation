@@ -1,0 +1,38 @@
+service_catalog_entry:
+  version: "1"
+  service_id: svc.engagement.communication
+  service_name: Communication and Adoption Support
+  function_area: Engagement
+  service_area: Communication
+  owners:
+    - role.consulting.delivery-lead
+    - role.client.sponsor
+  success_kpis:
+    - number_of_events
+    - incoming_business_requests
+    - workshop_quality
+    - business_units_using_solutions
+  linked_delivery_gates:
+    - gate.readiness-baseline
+    - gate.controlled-action-pilot
+  linked_reusable_assets:
+    - asset.cs-support-autonomy-envelope-template
+  notes: Business-facing front door for governed AI service adoption.
+
+service_level_agreement:
+  version: "1"
+  sla_id: sla.engagement.communication.v1
+  service_id: svc.engagement.communication
+  service_name: Communication and Adoption Support
+  response_targets:
+    - acknowledge_request_within_2_business_days
+  resolution_targets:
+    - schedule_initial_workshop_within_10_business_days
+    - publish_followup_actions_within_3_business_days_after_workshop
+  measurement_method: Service desk timestamps plus workshop log review.
+  evidence_requirements:
+    - request_log
+    - workshop_attendance_log
+    - followup_action_record
+  escalation_policy_id: sla.metadata.high
+  notes: Applies to the initial engagement and adoption service line.

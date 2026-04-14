@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.invalid/schemas/metadata-inconsistency-finding.schema.json",
+  "title": "MetadataInconsistencyFinding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "finding_id",
+    "artifact_id",
+    "finding_class",
+    "severity",
+    "owner_role",
+    "status"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "finding_id": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "finding_class": {
+      "type": "string",
+      "enum": [
+        "tabs_without_columns",
+        "schema_without_app",
+        "schema_without_table",
+        "schema_without_table_oos",
+        "schemas_missing_in_igc",
+        "out_of_sync_column",
+        "metadata_contact_inconsistency",
+        "data_artifact_inconsistency",
+        "glossary_quality_issue",
+        "btnr_candidate"
+      ]
+    },
+    "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+    "owner_role": { "type": "string" },
+    "status": { "type": "string", "enum": ["open", "in_progress", "blocked", "resolved", "ignored"] },
+    "jira_issue_key": { "type": "string" },
+    "source_report": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

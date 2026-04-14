@@ -1,0 +1,23 @@
+version: "1"
+policy_id: policy.customer-success.support-accelerator
+name: Customer Success Support Accelerator Bounty Policy
+service_offer_id: offer.customer-success.support-accelerator
+engagement_id: eng.customer-success.support-001
+allowed_reward_signals:
+  - validated_dependency_closure
+  - reusable_asset_promotion
+  - gate_supporting_validation_artifacts
+prohibited_reward_signals:
+  - raw_commit_count
+  - unreviewed_customer_facing_output
+  - bypassed_approval_path
+  - autonomy_expansion_without_gate_approval
+gate_requirements:
+  - gate.readiness-baseline
+  - gate.controlled-action-pilot
+required_approver_role: role.consulting.delivery-lead
+payout_ceiling_amount: 5000
+currency: USD
+requires_evidence_validation: true
+requires_gate_approval: true
+notes: Incentives reinforce proof-backed delivery only; they do not override DelEx controls.
