@@ -1,0 +1,11 @@
+metric_id: TAB.TEXT.GRAN
+figure_row: Textual Granularity
+metric_type: Outcome
+unit: Top-1 accuracy
+phase_targets:
+  - doc
+  - para
+  - sentence
+measurement_protocol: Exact match against labeled target set
+acceptable_error_margin: 10%
+evidence_artifact: labeled-query-set
