@@ -1,0 +1,35 @@
+name: Professional Intelligence Validation
+
+on:
+  pull_request:
+    paths:
+      - 'contracts/professional-intelligence/**'
+      - 'examples/professional-intelligence/**'
+      - 'scripts/validate_professional_intelligence.py'
+      - '.github/workflows/professional-intelligence-validation.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'contracts/professional-intelligence/**'
+      - 'examples/professional-intelligence/**'
+      - 'scripts/validate_professional_intelligence.py'
+      - '.github/workflows/professional-intelligence-validation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-professional-intelligence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Validate Professional Intelligence fixtures
+        run: python3 scripts/validate_professional_intelligence.py
