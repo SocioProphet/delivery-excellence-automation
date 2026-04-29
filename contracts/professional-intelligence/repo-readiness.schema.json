@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/professional-intelligence/repo-readiness.schema.json",
+  "title": "ProfessionalIntelligenceRepoReadiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "repo", "status", "checks"],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "repo": { "type": "string" },
+    "status": { "type": "string", "enum": ["red", "yellow", "green"] },
+    "capabilities": { "type": "array", "items": { "type": "string" } },
+    "checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["readme", "manifest", "architecture", "validation", "ci", "security", "license", "owner", "integrationMap"],
+      "properties": {
+        "readme": { "type": "boolean" },
+        "manifest": { "type": "boolean" },
+        "architecture": { "type": "boolean" },
+        "contractsOrSchemas": { "type": "boolean" },
+        "validation": { "type": "boolean" },
+        "ci": { "type": "boolean" },
+        "security": { "type": "boolean" },
+        "license": { "type": "boolean" },
+        "owner": { "type": "boolean" },
+        "integrationMap": { "type": "boolean" },
+        "demoScenario": { "type": "boolean" },
+        "evidenceArtifacts": { "type": "boolean" },
+        "adoptionTelemetry": { "type": "boolean" }
+      }
+    },
+    "missing": { "type": "array", "items": { "type": "string" } },
+    "lastReviewedAt": { "type": "string", "format": "date-time" },
+    "reviewer": { "type": "string" }
+  }
+}

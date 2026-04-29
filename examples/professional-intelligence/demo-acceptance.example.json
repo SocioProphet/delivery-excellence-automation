@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "v0.1",
+  "demoId": "pi-demo-0001",
+  "capability": "workspace-os",
+  "playbookId": "client-opportunity-review",
+  "accepted": false,
+  "evidence": {
+    "required": [
+      "playbook-loaded",
+      "institution-context-resolved",
+      "policy-decision",
+      "agent-step-evidence",
+      "workroom-updated",
+      "adoption-event"
+    ],
+    "provided": [
+      "playbook-loaded"
+    ],
+    "missing": [
+      "institution-context-resolved",
+      "policy-decision",
+      "agent-step-evidence",
+      "workroom-updated",
+      "adoption-event"
+    ]
+  },
+  "kpis": [
+    {
+      "id": "demoGateCompletionPercent",
+      "value": 16.7,
+      "target": 100
+    },
+    {
+      "id": "evidenceCoveragePercent",
+      "value": 16.7,
+      "target": 100
+    }
+  ],
+  "notes": "Seed acceptance fixture for the first Professional Intelligence OS demo gate."
+}

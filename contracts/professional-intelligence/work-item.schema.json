@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/professional-intelligence/work-item.schema.json",
+  "title": "ProfessionalIntelligenceWorkItem",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "workItemId", "title", "capability", "ownerRepo", "acceptance"],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "workItemId": { "type": "string" },
+    "title": { "type": "string" },
+    "capability": {
+      "type": "string",
+      "enum": [
+        "institution-context-engine",
+        "institution-graph",
+        "agent-fabric",
+        "conflict-engine",
+        "obligation-ledger",
+        "ethical-walls",
+        "workspace-os",
+        "adoption-telemetry",
+        "evidence-plane",
+        "revenue-integrity",
+        "vertical-pack",
+        "delivery-governance"
+      ]
+    },
+    "ownerRepo": { "type": "string" },
+    "runtimeRepo": { "type": "string" },
+    "governanceRepo": { "type": "string" },
+    "riskClass": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+    "demoImpact": { "type": "string", "enum": ["none", "low", "medium", "high", "critical"] },
+    "branch": { "type": "string" },
+    "files": { "type": "array", "items": { "type": "string" } },
+    "validationCommands": { "type": "array", "items": { "type": "string" } },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredEvidence"],
+      "properties": {
+        "requiredEvidence": { "type": "array", "items": { "type": "string" } },
+        "requiredKpis": { "type": "array", "items": { "type": "string" } },
+        "demoRequired": { "type": "boolean" }
+      }
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

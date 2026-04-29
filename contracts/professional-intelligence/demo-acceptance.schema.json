@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/professional-intelligence/demo-acceptance.schema.json",
+  "title": "ProfessionalIntelligenceDemoAcceptance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "demoId", "capability", "accepted", "evidence"],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "demoId": { "type": "string" },
+    "capability": { "type": "string" },
+    "playbookId": { "type": "string" },
+    "accepted": { "type": "boolean" },
+    "acceptedAt": { "type": "string", "format": "date-time" },
+    "reviewer": { "type": "string" },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "provided"],
+      "properties": {
+        "required": { "type": "array", "items": { "type": "string" } },
+        "provided": { "type": "array", "items": { "type": "string" } },
+        "missing": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "kpis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "value"],
+        "properties": {
+          "id": { "type": "string" },
+          "value": { "type": ["number", "string", "boolean"] },
+          "target": { "type": ["number", "string", "boolean"] }
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}
