@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "v0.1",
+  "workItemId": "pi-work-0001",
+  "title": "Validate Professional Intelligence platform manifest and schemas",
+  "capability": "delivery-governance",
+  "ownerRepo": "SocioProphet/prophet-platform",
+  "runtimeRepo": "SocioProphet/prophet-platform",
+  "governanceRepo": "SocioProphet/delivery-excellence",
+  "riskClass": "medium",
+  "demoImpact": "high",
+  "branch": "work/professional-intelligence-os-20260429",
+  "files": [
+    "professional-intelligence.manifest.yaml",
+    "contracts/evidence/adoption-event.schema.json",
+    "contracts/institution/institution-entity.schema.json"
+  ],
+  "validationCommands": [
+    "python3 scripts/validate_professional_intelligence.py"
+  ],
+  "acceptance": {
+    "requiredEvidence": [
+      "schema-validation-report",
+      "manifest-reference-check"
+    ],
+    "requiredKpis": [
+      "platformContractCoverage",
+      "manifestValidity"
+    ],
+    "demoRequired": false
+  },
+  "links": {
+    "platformPr": "SocioProphet/prophet-platform#263",
+    "workOrder": "SocioProphet/prophet-platform#269"
+  }
+}
