@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "v0.1",
+  "repo": "SocioProphet/prophet-platform",
+  "status": "yellow",
+  "capabilities": [
+    "institution-context-engine",
+    "agent-fabric",
+    "adoption-telemetry",
+    "evidence-plane"
+  ],
+  "checks": {
+    "readme": true,
+    "manifest": true,
+    "architecture": true,
+    "contractsOrSchemas": true,
+    "validation": false,
+    "ci": true,
+    "security": true,
+    "license": true,
+    "owner": true,
+    "integrationMap": true,
+    "demoScenario": false,
+    "evidenceArtifacts": false,
+    "adoptionTelemetry": true
+  },
+  "missing": [
+    "professional-intelligence validation fixtures",
+    "demo scenario",
+    "evidence artifact examples"
+  ],
+  "lastReviewedAt": "2026-04-29T15:10:00Z",
+  "reviewer": "DelEx"
+}
