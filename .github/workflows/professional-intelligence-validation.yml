@@ -5,6 +5,8 @@ on:
     paths:
       - 'contracts/professional-intelligence/**'
       - 'examples/professional-intelligence/**'
+      - 'contracts/agent-harness/**'
+      - 'examples/agent-harness/**'
       - 'scripts/validate_professional_intelligence.py'
       - '.github/workflows/professional-intelligence-validation.yml'
   push:
@@ -13,6 +15,8 @@ on:
     paths:
       - 'contracts/professional-intelligence/**'
       - 'examples/professional-intelligence/**'
+      - 'contracts/agent-harness/**'
+      - 'examples/agent-harness/**'
       - 'scripts/validate_professional_intelligence.py'
       - '.github/workflows/professional-intelligence-validation.yml'
 
@@ -31,5 +35,5 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Validate Professional Intelligence fixtures
+      - name: Validate Professional Intelligence and Agent Harness fixtures
         run: python3 scripts/validate_professional_intelligence.py
