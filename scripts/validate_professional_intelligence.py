@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Validate Professional Intelligence DelEx automation fixtures.
+"""Validate Professional Intelligence and Agent Harness DelEx automation fixtures.
 
 This validator intentionally uses only the Python standard library. It implements the
-small JSON Schema subset used by this repository's Professional Intelligence schemas:
-required, properties, additionalProperties=false, const, enum, primitive type checks,
-arrays, object properties, and simple union types.
+small JSON Schema subset used by this repository's DelEx schemas: required,
+properties, additionalProperties=false, const, enum, primitive type checks, arrays,
+object properties, and simple union types.
 """
 
 from __future__ import annotations
@@ -28,6 +28,30 @@ PAIRS = [
     (
         ROOT / "contracts/professional-intelligence/repo-readiness.schema.json",
         ROOT / "examples/professional-intelligence/repo-readiness.example.json",
+    ),
+    (
+        ROOT / "contracts/agent-harness/recent-repo-activity-report.schema.json",
+        ROOT / "examples/agent-harness/recent-repo-activity-report.example.json",
+    ),
+    (
+        ROOT / "contracts/agent-harness/delivery-metric-event.schema.json",
+        ROOT / "examples/agent-harness/delivery-metric-event.example.json",
+    ),
+    (
+        ROOT / "contracts/agent-harness/scoreboard-snapshot.schema.json",
+        ROOT / "examples/agent-harness/scoreboard-snapshot.example.json",
+    ),
+    (
+        ROOT / "contracts/agent-harness/customer-proof-readout.schema.json",
+        ROOT / "examples/agent-harness/customer-proof-readout.example.json",
+    ),
+    (
+        ROOT / "contracts/agent-harness/human-control-event.schema.json",
+        ROOT / "examples/agent-harness/human-control-event.example.json",
+    ),
+    (
+        ROOT / "contracts/agent-harness/skill-mcp-asset-score.schema.json",
+        ROOT / "examples/agent-harness/skill-mcp-asset-score.example.json",
     ),
 ]
 
@@ -125,12 +149,12 @@ def main() -> int:
             failures.append(str(exc))
 
     if failures:
-        print("Professional Intelligence validation failed:", file=sys.stderr)
+        print("DelEx automation validation failed:", file=sys.stderr)
         for failure in failures:
             print(f"- {failure}", file=sys.stderr)
         return 1
 
-    print("Professional Intelligence validation passed")
+    print("DelEx automation validation passed")
     return 0
 
 
