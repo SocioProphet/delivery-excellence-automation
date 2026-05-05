@@ -21,14 +21,17 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
+from validate_professional_intelligence import ValidationError, load_json, validate
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "examples/agent-harness/recent-repo-activity-report.example.json"
 DEFAULT_OUTPUT_DIR = ROOT / "build/agent-harness"
 
-
-def load_json(path: Path) -> Any:
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+SCHEMAS = {
+    "scoreboard": ROOT / "contracts/agent-harness/scoreboard-snapshot.schema.json",
+    "metric": ROOT / "contracts/agent-harness/delivery-metric-event.schema.json",
+    "customer_proof": ROOT / "contracts/agent-harness/customer-proof-readout.schema.json",
+}
 
 
 def write_json(path: Path, payload: Any) -> None:
@@ -149,6 +152,17 @@ def build_customer_proof(report: dict[str, Any], scoreboard: dict[str, Any]) -> 
     }
 
 
+def validate_generated(scoreboard: dict[str, Any], metric_event: dict[str, Any], customer_proof: dict[str, Any]) -> None:
+    checks = [
+        ("scoreboard", scoreboard),
+        ("metric", metric_event),
+        ("customer_proof", customer_proof),
+    ]
+    for schema_name, payload in checks:
+        schema = load_json(SCHEMAS[schema_name])
+        validate(schema, payload)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
@@ -159,6 +173,11 @@ def main() -> int:
     scoreboard = build_scoreboard(report)
     metric_event = build_metric_event(report)
     customer_proof = build_customer_proof(report, scoreboard)
+
+    try:
+        validate_generated(scoreboard, metric_event, customer_proof)
+    except ValidationError as exc:
+        raise SystemExit(f"generated readout validation failed: {exc}") from exc
 
     write_json(args.output_dir / "scoreboard-snapshot.generated.json", scoreboard)
     write_json(args.output_dir / "delivery-metric-event.generated.json", metric_event)
