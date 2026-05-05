@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/agent-harness/skill-mcp-asset-score.schema.json",
+  "title": "SkillMCPAssetScore",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "assetScoreId", "generatedAt", "assetType", "assetRef", "trustTier", "score", "status", "evidenceRefs"],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "assetScoreId": { "type": "string" },
+    "generatedAt": { "type": "string" },
+    "assetType": { "type": "string", "enum": ["skill", "mcp-server", "tool-pack", "agent-template"] },
+    "assetRef": { "type": "string" },
+    "ownerRepo": { "type": "string" },
+    "trustTier": { "type": "string", "enum": ["official", "verified", "community", "internal", "quarantined", "deprecated", "revoked"] },
+    "score": { "type": "number" },
+    "status": { "type": "string", "enum": ["usable", "needs-review", "blocked", "deprecated", "revoked"] },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "status"],
+        "properties": {
+          "name": { "type": "string" },
+          "status": { "type": "string", "enum": ["pass", "fail", "warn", "not-applicable"] },
+          "evidenceRef": { "type": "string" }
+        }
+      }
+    },
+    "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+    "nextAction": { "type": "string" }
+  }
+}
