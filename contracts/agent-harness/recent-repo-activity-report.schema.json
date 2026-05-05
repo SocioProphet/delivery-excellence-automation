@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/agent-harness/recent-repo-activity-report.schema.json",
+  "title": "RecentRepoActivityReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "reportId", "generatedAt", "windowDays", "subject", "activities"],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "reportId": { "type": "string" },
+    "generatedAt": { "type": "string" },
+    "windowDays": { "type": "integer" },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["login", "orgs"],
+      "properties": {
+        "login": { "type": "string" },
+        "orgs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "activities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repo", "owner", "activityType", "observedAt", "evidenceRef", "deliveryLane"],
+        "properties": {
+          "repo": { "type": "string" },
+          "owner": { "type": "string" },
+          "activityType": {
+            "type": "string",
+            "enum": ["new-repo", "recent-commit", "recent-pr", "recent-issue", "release", "workflow-run", "manual-observation"]
+          },
+          "observedAt": { "type": "string" },
+          "evidenceRef": { "type": "string" },
+          "deliveryLane": {
+            "type": "string",
+            "enum": ["runtime", "governance", "memory", "security", "workstation", "operator-ux", "delivery", "model", "knowledge", "product", "lab", "unknown"]
+          },
+          "summary": { "type": "string" },
+          "followUpRequired": { "type": "boolean" }
+        }
+      }
+    },
+    "links": { "type": "object", "additionalProperties": { "type": "string" } }
+  }
+}
