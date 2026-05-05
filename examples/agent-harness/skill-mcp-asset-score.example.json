@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "v0.1",
+  "assetScoreId": "skill-mcp-score-sourceos-browser-terminal-2026-05-05",
+  "generatedAt": "2026-05-05T00:00:00Z",
+  "assetType": "tool-pack",
+  "assetRef": "sourceos://tool-pack/browser-terminal-governed-surfaces",
+  "ownerRepo": "SourceOS-Linux/BearBrowser",
+  "trustTier": "internal",
+  "score": 65,
+  "status": "needs-review",
+  "checks": [
+    {
+      "name": "manifest-present",
+      "status": "warn",
+      "evidenceRef": "github://SourceOS-Linux/BearBrowser/README.md"
+    },
+    {
+      "name": "policy-grants-declared",
+      "status": "warn",
+      "evidenceRef": "github://SocioProphet/policy-fabric"
+    },
+    {
+      "name": "operator-surface-present",
+      "status": "pass",
+      "evidenceRef": "github://SourceOS-Linux/TurtleTerm/README.md"
+    }
+  ],
+  "evidenceRefs": [
+    "github://SourceOS-Linux/BearBrowser",
+    "github://SourceOS-Linux/TurtleTerm"
+  ],
+  "nextAction": "Create governed skill/MCP manifests and SCOPE-D risk checks for browser and terminal tool packs."
+}
