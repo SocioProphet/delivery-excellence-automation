@@ -5,7 +5,10 @@ on:
     paths:
       - 'contracts/professional-intelligence/**'
       - 'examples/professional-intelligence/**'
+      - 'contracts/agent-harness/**'
+      - 'examples/agent-harness/**'
       - 'scripts/validate_professional_intelligence.py'
+      - 'scripts/generate_agent_harness_readouts.py'
       - '.github/workflows/professional-intelligence-validation.yml'
   push:
     branches:
@@ -13,7 +16,10 @@ on:
     paths:
       - 'contracts/professional-intelligence/**'
       - 'examples/professional-intelligence/**'
+      - 'contracts/agent-harness/**'
+      - 'examples/agent-harness/**'
       - 'scripts/validate_professional_intelligence.py'
+      - 'scripts/generate_agent_harness_readouts.py'
       - '.github/workflows/professional-intelligence-validation.yml'
 
 permissions:
@@ -31,5 +37,8 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Validate Professional Intelligence fixtures
+      - name: Validate Professional Intelligence and Agent Harness fixtures
         run: python3 scripts/validate_professional_intelligence.py
+
+      - name: Generate and validate Agent Harness readouts
+        run: python3 scripts/generate_agent_harness_readouts.py --input examples/agent-harness/recent-repo-activity-report.example.json --output-dir build/agent-harness

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "v0.1",
+  "eventId": "approval-delivery-model-baseline",
+  "observedAt": "2026-05-05T00:00:00Z",
+  "actorRef": "github://mdheller",
+  "eventType": "approval",
+  "subjectRef": "github://SocioProphet/delivery-excellence/pull/9",
+  "repo": "SocioProphet/delivery-excellence",
+  "decision": "approved",
+  "reason": "Delivery Excellence is the correct plane for performance stack, corporate metrics, scoreboards, and operating cadence.",
+  "evidenceRef": "github://SocioProphet/delivery-excellence/docs/agent-harness-delivery-operating-model.md",
+  "followUpWorkItemRef": "agent-harness-metrics-contracts-v0.1"
+}

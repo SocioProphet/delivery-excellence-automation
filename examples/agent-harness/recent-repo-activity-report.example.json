@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "v0.1",
+  "reportId": "recent-repo-activity-2026-05-05-mdheller-21d",
+  "generatedAt": "2026-05-05T00:00:00Z",
+  "windowDays": 21,
+  "subject": {
+    "login": "mdheller",
+    "orgs": ["SocioProphet", "SourceOS-Linux", "SociOS-Linux"]
+  },
+  "activities": [
+    {
+      "repo": "SocioProphet/agentplane",
+      "owner": "SocioProphet",
+      "activityType": "recent-commit",
+      "observedAt": "2026-05-04T16:21:41-04:00",
+      "evidenceRef": "github://SocioProphet/agentplane/commit/d79db6ffa0d56fdcc2e82500e4cdc7ad787638e3",
+      "deliveryLane": "runtime",
+      "summary": "Agentic PR control plane defined for governed agent work orders.",
+      "followUpRequired": true
+    },
+    {
+      "repo": "SocioProphet/delivery-excellence",
+      "owner": "SocioProphet",
+      "activityType": "recent-commit",
+      "observedAt": "2026-04-29T11:43:27-04:00",
+      "evidenceRef": "github://SocioProphet/delivery-excellence/commit/de9a8514e9dd56ed3c97d218931a0633935c7768",
+      "deliveryLane": "delivery",
+      "summary": "Professional Intelligence delivery model added.",
+      "followUpRequired": false
+    },
+    {
+      "repo": "SourceOS-Linux/BearBrowser",
+      "owner": "SourceOS-Linux",
+      "activityType": "recent-commit",
+      "observedAt": "2026-05-04T19:11:54-04:00",
+      "evidenceRef": "github://SourceOS-Linux/BearBrowser/commit/a2e71207824a6ba0f9ebde42fe1a9579d631b434",
+      "deliveryLane": "operator-ux",
+      "summary": "BearBrowser launcher repair command exposed.",
+      "followUpRequired": true
+    }
+  ],
+  "links": {
+    "dossier": "file://socioprophet_repository_dossier_current_snapshot_2026-04-29.pdf"
+  }
+}

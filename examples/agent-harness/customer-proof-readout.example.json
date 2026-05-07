@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "v0.1",
+  "readoutId": "customer-proof-governed-agent-harness-2026-05-05",
+  "generatedAt": "2026-05-05T00:00:00Z",
+  "audience": "customer-safe",
+  "outcomeRef": "outcome-governed-agent-harness",
+  "customerRef": "internal-reference-customer",
+  "workPerformed": [
+    "Mapped outcome-driven agent harness lessons to SocioProphet and SourceOS delivery planes.",
+    "Separated runtime, policy, topology, memory, browser, terminal, security, and delivery ownership.",
+    "Defined scoreboards for readiness, proof, human control, and reusable skill/MCP assets."
+  ],
+  "artifactsChanged": [
+    "docs/agent-harness-delivery-operating-model.md",
+    "contracts/agent-harness/*.schema.json"
+  ],
+  "approvals": ["human-control-event://approval-delivery-model-baseline"],
+  "valueClaims": [
+    "Creates a repeatable management surface for agent/human work.",
+    "Improves ability to prove delivery value without exposing sensitive runtime details."
+  ],
+  "costSummary": "No runtime agent execution cost recorded in this example.",
+  "evidenceRefs": [
+    "github://SocioProphet/delivery-excellence/pull/9",
+    "github://SocioProphet/delivery-excellence-automation/tree/work/agent-harness-metrics-contracts/contracts/agent-harness"
+  ],
+  "knownLimits": [
+    "Example readout only; production readouts should be generated from validated evidence packs.",
+    "No customer-sensitive data is included."
+  ],
+  "nextDecision": "Approve automation contracts and wire scoreboard generation."
+}

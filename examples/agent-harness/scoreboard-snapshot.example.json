@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "v0.1",
+  "snapshotId": "scoreboard-agent-harness-2026-05-05",
+  "generatedAt": "2026-05-05T00:00:00Z",
+  "scoreboardType": "agent-harness",
+  "period": {
+    "start": "2026-04-14T00:00:00Z",
+    "end": "2026-05-05T00:00:00Z"
+  },
+  "scores": [
+    {
+      "subjectRef": "github://SocioProphet/agentplane",
+      "score": 72,
+      "status": "yellow",
+      "evidenceRefs": [
+        "github://SocioProphet/agentplane/README.md",
+        "github://SocioProphet/agentplane/commit/d79db6ffa0d56fdcc2e82500e4cdc7ad787638e3"
+      ],
+      "blockedBy": ["runtime contract schemas not yet complete"],
+      "nextAction": "Add OutcomeSpec, GraphSpec, SessionEnvelope, EvidencePack, EvolutionPatch, and PromotionGate contracts."
+    },
+    {
+      "subjectRef": "github://SocioProphet/delivery-excellence",
+      "score": 80,
+      "status": "green",
+      "evidenceRefs": [
+        "github://SocioProphet/delivery-excellence/docs/agent-harness-delivery-operating-model.md"
+      ],
+      "blockedBy": [],
+      "nextAction": "Connect scoreboards to automation contracts."
+    }
+  ],
+  "summary": "Initial agent harness scoreboard snapshot for Delivery Excellence operating review."
+}

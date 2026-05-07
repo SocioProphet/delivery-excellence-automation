@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/agent-harness/scoreboard-snapshot.schema.json",
+  "title": "ScoreboardSnapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "snapshotId", "generatedAt", "scoreboardType", "period", "scores"],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "snapshotId": { "type": "string" },
+    "generatedAt": { "type": "string" },
+    "scoreboardType": {
+      "type": "string",
+      "enum": ["estate-readiness", "agent-harness", "product-proof", "skill-mcp", "security-readiness", "customer-proof"]
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "string" },
+        "end": { "type": "string" }
+      }
+    },
+    "scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["subjectRef", "score", "status", "evidenceRefs"],
+        "properties": {
+          "subjectRef": { "type": "string" },
+          "score": { "type": "number" },
+          "status": { "type": "string", "enum": ["green", "yellow", "red", "unknown"] },
+          "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+          "blockedBy": { "type": "array", "items": { "type": "string" } },
+          "nextAction": { "type": "string" }
+        }
+      }
+    },
+    "summary": { "type": "string" }
+  }
+}

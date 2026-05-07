@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/agent-harness/human-control-event.schema.json",
+  "title": "HumanControlEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "eventId", "observedAt", "actorRef", "eventType", "subjectRef", "decision", "evidenceRef"],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "eventId": { "type": "string" },
+    "observedAt": { "type": "string" },
+    "actorRef": { "type": "string" },
+    "eventType": {
+      "type": "string",
+      "enum": ["approval", "rejection", "override", "clarification", "risk-acceptance", "credential-grant", "scope-change", "promotion-approval"]
+    },
+    "subjectRef": { "type": "string" },
+    "repo": { "type": "string" },
+    "decision": { "type": "string", "enum": ["approved", "rejected", "deferred", "accepted-risk", "revoked"] },
+    "reason": { "type": "string" },
+    "evidenceRef": { "type": "string" },
+    "followUpWorkItemRef": { "type": "string" }
+  }
+}

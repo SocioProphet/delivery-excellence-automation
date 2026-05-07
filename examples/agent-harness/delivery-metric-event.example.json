@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "v0.1",
+  "metricEventId": "metric-agentplane-replay-success-2026-05-05",
+  "observedAt": "2026-05-05T00:00:00Z",
+  "repo": "SocioProphet/agentplane",
+  "workItemRef": "agent-harness-runtime-contracts-v0.1",
+  "outcomeRef": "outcome-governed-agent-harness",
+  "metricFamily": "reliability",
+  "metricName": "replay-evidence-present",
+  "value": 1,
+  "unit": "boolean-as-number",
+  "direction": "higher-is-better",
+  "evidenceRef": "github://SocioProphet/agentplane/docs/receipt-lifecycle.md",
+  "notes": "Tracks whether a run or workstream emits replay-ready evidence rather than logs only."
+}

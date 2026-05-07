@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/agent-harness/delivery-metric-event.schema.json",
+  "title": "DeliveryMetricEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "metricEventId", "observedAt", "repo", "metricFamily", "metricName", "value", "unit", "evidenceRef"],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "metricEventId": { "type": "string" },
+    "observedAt": { "type": "string" },
+    "repo": { "type": "string" },
+    "workItemRef": { "type": "string" },
+    "outcomeRef": { "type": "string" },
+    "metricFamily": {
+      "type": "string",
+      "enum": ["throughput", "flow", "quality", "governance", "cost", "reliability", "safety-security", "customer-proof"]
+    },
+    "metricName": { "type": "string" },
+    "value": { "type": "number" },
+    "unit": { "type": "string" },
+    "direction": { "type": "string", "enum": ["higher-is-better", "lower-is-better", "target-band", "informational"] },
+    "evidenceRef": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/agent-harness/customer-proof-readout.schema.json",
+  "title": "CustomerProofReadout",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "readoutId", "generatedAt", "audience", "outcomeRef", "workPerformed", "evidenceRefs", "knownLimits"],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "readoutId": { "type": "string" },
+    "generatedAt": { "type": "string" },
+    "audience": { "type": "string", "enum": ["internal", "executive", "customer-safe", "public-demo"] },
+    "outcomeRef": { "type": "string" },
+    "customerRef": { "type": "string" },
+    "workPerformed": { "type": "array", "items": { "type": "string" } },
+    "artifactsChanged": { "type": "array", "items": { "type": "string" } },
+    "approvals": { "type": "array", "items": { "type": "string" } },
+    "valueClaims": { "type": "array", "items": { "type": "string" } },
+    "costSummary": { "type": "string" },
+    "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+    "knownLimits": { "type": "array", "items": { "type": "string" } },
+    "nextDecision": { "type": "string" }
+  }
+}
