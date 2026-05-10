@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/delex/semantic-enterprise/adoption-coverage.schema.json",
+  "title": "SemanticEnterpriseAdoptionCoverage",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "coverageId",
+    "generatedAt",
+    "sourceRelease",
+    "parentTracker",
+    "repos",
+    "overall"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "coverageId": { "type": "string" },
+    "generatedAt": { "type": "string" },
+    "sourceRelease": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "release", "manifestPath", "rollupRegistryPath"],
+      "properties": {
+        "repository": { "const": "SocioProphet/ontogenesis" },
+        "release": { "const": "semantic-enterprise-v0.1.0" },
+        "manifestPath": { "const": "manifests/semantic_enterprise_v0_1_manifest.json" },
+        "rollupRegistryPath": { "const": "catalog/semantic_enterprise_v0_1_registry.ttl" }
+      }
+    },
+    "parentTracker": { "type": "string" },
+    "repos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repository",
+          "issueRef",
+          "status",
+          "phase",
+          "artifactSurface",
+          "coverage",
+          "closure"
+        ],
+        "properties": {
+          "repository": { "type": "string" },
+          "issueRef": { "type": "string" },
+          "prRef": { "type": ["string", "null"] },
+          "mergeCommit": { "type": ["string", "null"] },
+          "status": {
+            "type": "string",
+            "enum": ["planned", "issue-open", "pr-open", "merged", "validated", "blocked"]
+          },
+          "phase": { "type": "string" },
+          "artifactSurface": { "type": "string" },
+          "coverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "manifestImporter",
+              "scenarioCoverage",
+              "queryCoverage",
+              "namedGraphCoverage",
+              "provenancePreserved",
+              "validationWired",
+              "docsPresent"
+            ],
+            "properties": {
+              "manifestImporter": { "type": "boolean" },
+              "scenarioCoverage": { "type": "boolean" },
+              "queryCoverage": { "type": "boolean" },
+              "namedGraphCoverage": { "type": "boolean" },
+              "provenancePreserved": { "type": "boolean" },
+              "validationWired": { "type": "boolean" },
+              "docsPresent": { "type": "boolean" }
+            }
+          },
+          "closure": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["insideSource", "outsideRuntime", "boundaryMembrane", "feedbackSurface"],
+            "properties": {
+              "insideSource": { "type": "boolean" },
+              "outsideRuntime": { "type": "boolean" },
+              "boundaryMembrane": { "type": "boolean" },
+              "feedbackSurface": { "type": "boolean" }
+            }
+          },
+          "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+          "nextAction": { "type": "string" }
+        }
+      }
+    },
+    "overall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "completedRepos", "totalRepos", "coverageScore", "closureScore"],
+      "properties": {
+        "status": { "type": "string", "enum": ["green", "yellow", "red"] },
+        "completedRepos": { "type": "integer" },
+        "totalRepos": { "type": "integer" },
+        "coverageScore": { "type": "number" },
+        "closureScore": { "type": "number" },
+        "summary": { "type": "string" }
+      }
+    }
+  }
+}
