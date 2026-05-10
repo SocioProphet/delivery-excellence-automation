@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "v0.1",
+  "coverageId": "semantic-enterprise-v0.1.0-adoption-2026-05-10",
+  "generatedAt": "2026-05-10T11:30:00Z",
+  "sourceRelease": {
+    "repository": "SocioProphet/ontogenesis",
+    "release": "semantic-enterprise-v0.1.0",
+    "manifestPath": "manifests/semantic_enterprise_v0_1_manifest.json",
+    "rollupRegistryPath": "catalog/semantic_enterprise_v0_1_registry.ttl"
+  },
+  "parentTracker": "SocioProphet/delivery-excellence#21",
+  "repos": [
+    {
+      "repository": "SocioProphet/prophet-platform",
+      "issueRef": "SocioProphet/prophet-platform#436",
+      "prRef": "SocioProphet/prophet-platform#444",
+      "mergeCommit": "c8d7b5503b0e38fe8e81650b9f84cf68bb8d8102",
+      "status": "validated",
+      "phase": "Phase 1 — platform import spine",
+      "artifactSurface": "semantic-enterprise.catalog.v0.1",
+      "coverage": {
+        "manifestImporter": true,
+        "scenarioCoverage": true,
+        "queryCoverage": true,
+        "namedGraphCoverage": true,
+        "provenancePreserved": true,
+        "validationWired": true,
+        "docsPresent": true
+      },
+      "closure": {
+        "insideSource": true,
+        "outsideRuntime": true,
+        "boundaryMembrane": true,
+        "feedbackSurface": true
+      },
+      "evidenceRefs": [
+        "contracts/semantic-enterprise/v0.1/semantic_enterprise_manifest.import.json",
+        "tools/validate_semantic_enterprise_import.py",
+        "docs/SEMANTIC_ENTERPRISE_IMPORT.md"
+      ],
+      "nextAction": "Use the platform contract as the canonical import shape for runtime API and catalog work."
+    },
+    {
+      "repository": "SocioProphet/sherlock-search",
+      "issueRef": "SocioProphet/sherlock-search#41",
+      "prRef": "SocioProphet/sherlock-search#43",
+      "mergeCommit": "993f6cf3429284050f596ce37179b60c887778c4",
+      "status": "validated",
+      "phase": "Phase 2 — search and evidence surface",
+      "artifactSurface": "sherlock-search.semantic-enterprise.index",
+      "coverage": {
+        "manifestImporter": false,
+        "scenarioCoverage": true,
+        "queryCoverage": true,
+        "namedGraphCoverage": true,
+        "provenancePreserved": true,
+        "validationWired": true,
+        "docsPresent": true
+      },
+      "closure": {
+        "insideSource": true,
+        "outsideRuntime": true,
+        "boundaryMembrane": true,
+        "feedbackSurface": true
+      },
+      "evidenceRefs": [
+        "examples/semantic-enterprise/v0.1/search-index.example.json",
+        "scripts/validate_semantic_enterprise_search_index.py",
+        "docs/SEMANTIC_ENTERPRISE_INDEX.md"
+      ],
+      "nextAction": "Promote the fixture into a real index ingestion path once Sherlock runtime storage is ready."
+    },
+    {
+      "repository": "SocioProphet/policy-fabric",
+      "issueRef": "SocioProphet/policy-fabric#65",
+      "prRef": "SocioProphet/policy-fabric#68",
+      "mergeCommit": "771152c77150b85677cb373e102ccff3b9a29a5b",
+      "status": "validated",
+      "phase": "Phase 3 — governance activation",
+      "artifactSurface": "policy-fabric.semantic-enterprise.policy-input",
+      "coverage": {
+        "manifestImporter": false,
+        "scenarioCoverage": true,
+        "queryCoverage": false,
+        "namedGraphCoverage": true,
+        "provenancePreserved": true,
+        "validationWired": true,
+        "docsPresent": true
+      },
+      "closure": {
+        "insideSource": true,
+        "outsideRuntime": true,
+        "boundaryMembrane": true,
+        "feedbackSurface": true
+      },
+      "evidenceRefs": [
+        "examples/semantic-enterprise/v0.1/policy-input.example.json",
+        "tools/validate_semantic_enterprise_policy_input.py",
+        "docs/specs/SEMANTIC_ENTERPRISE_POLICY_INPUT.md"
+      ],
+      "nextAction": "Bind policy-input fixture to real policy evaluation once named-graph gates become runtime policy material."
+    },
+    {
+      "repository": "SocioProphet/agentplane",
+      "issueRef": "SocioProphet/agentplane#131",
+      "prRef": "SocioProphet/agentplane#137",
+      "mergeCommit": "ffb99db8145112c64de14b5651e50420e44cb50d",
+      "status": "validated",
+      "phase": "Phase 4 — agent boundary activation",
+      "artifactSurface": "agentplane.semantic-enterprise.context-boundary",
+      "coverage": {
+        "manifestImporter": false,
+        "scenarioCoverage": true,
+        "queryCoverage": true,
+        "namedGraphCoverage": true,
+        "provenancePreserved": true,
+        "validationWired": true,
+        "docsPresent": true
+      },
+      "closure": {
+        "insideSource": true,
+        "outsideRuntime": true,
+        "boundaryMembrane": true,
+        "feedbackSurface": true
+      },
+      "evidenceRefs": [
+        "examples/semantic-enterprise/v0.1/agent-context-boundary.example.json",
+        "tools/validate_semantic_enterprise_agent_boundary.py",
+        "docs/integration/semantic-enterprise-agent-boundary.md"
+      ],
+      "nextAction": "Wire sector contexts into actual task admission checks."
+    },
+    {
+      "repository": "SourceOS-Linux/sourceos-syncd",
+      "issueRef": "SourceOS-Linux/sourceos-syncd#17",
+      "prRef": "SourceOS-Linux/sourceos-syncd#24",
+      "mergeCommit": "c2110c41adf6d9b5467906b10d4c72f130215ed2",
+      "status": "validated",
+      "phase": "Phase 5 — SourceOS integrity mapping",
+      "artifactSurface": "sourceos-syncd.semantic-enterprise.state-integrity",
+      "coverage": {
+        "manifestImporter": false,
+        "scenarioCoverage": true,
+        "queryCoverage": false,
+        "namedGraphCoverage": true,
+        "provenancePreserved": true,
+        "validationWired": true,
+        "docsPresent": true
+      },
+      "closure": {
+        "insideSource": true,
+        "outsideRuntime": true,
+        "boundaryMembrane": true,
+        "feedbackSurface": true
+      },
+      "evidenceRefs": [
+        "examples/semantic-enterprise/v0.1/state-integrity-mapping.example.json",
+        "tools/validate_semantic_enterprise_state_integrity.py",
+        "docs/semantic-enterprise-state-integrity.md"
+      ],
+      "nextAction": "Map SourceOS release artifacts and repair plans to the fixture in runtime evidence."
+    },
+    {
+      "repository": "SocioProphet/delivery-excellence-automation",
+      "issueRef": "SocioProphet/delivery-excellence-automation#8",
+      "prRef": null,
+      "mergeCommit": null,
+      "status": "pr-open",
+      "phase": "Phase 6 — delivery metering",
+      "artifactSurface": "delivery-excellence.semantic-enterprise.adoption-coverage",
+      "coverage": {
+        "manifestImporter": false,
+        "scenarioCoverage": true,
+        "queryCoverage": true,
+        "namedGraphCoverage": true,
+        "provenancePreserved": true,
+        "validationWired": true,
+        "docsPresent": true
+      },
+      "closure": {
+        "insideSource": true,
+        "outsideRuntime": true,
+        "boundaryMembrane": true,
+        "feedbackSurface": true
+      },
+      "evidenceRefs": [
+        "contracts/semantic-enterprise/adoption-coverage.schema.json",
+        "examples/semantic-enterprise/adoption-coverage.example.json",
+        "scripts/validate_semantic_enterprise_adoption.py"
+      ],
+      "nextAction": "Merge this adoption coverage PR and then run the final closure audit."
+    }
+  ],
+  "overall": {
+    "status": "yellow",
+    "completedRepos": 5,
+    "totalRepos": 6,
+    "coverageScore": 0.88,
+    "closureScore": 1.0,
+    "summary": "Five downstream repos are validated. DeliveryExcellence automation coverage is represented by this in-flight PR."
+  }
+}
