@@ -1,0 +1,35 @@
+name: Semantic Enterprise Adoption Validation
+
+on:
+  pull_request:
+    paths:
+      - 'contracts/semantic-enterprise/**'
+      - 'examples/semantic-enterprise/**'
+      - 'scripts/validate_semantic_enterprise_adoption.py'
+      - '.github/workflows/semantic-enterprise-adoption.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'contracts/semantic-enterprise/**'
+      - 'examples/semantic-enterprise/**'
+      - 'scripts/validate_semantic_enterprise_adoption.py'
+      - '.github/workflows/semantic-enterprise-adoption.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-semantic-enterprise-adoption:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Validate Semantic Enterprise adoption coverage
+        run: python3 scripts/validate_semantic_enterprise_adoption.py
